@@ -1,0 +1,1 @@
+This is a header parser microservice from Free Code Camp's API projects. By using it, I can get the IP address, language, and operating system for my browser.
