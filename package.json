@@ -4,7 +4,8 @@
   "description": "Continuous Functional Test Automation from https://tanzimsaqib.wordpress.com/2015/06/06/continuous-functional-test-automation-with-gulp-mocha-request-cheerio-chai/",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test.js"
+    "test": "mocha ./test.js",
+    "start": "node index.js"
   },
   "author": "Rachel Arkebauer",
   "license": "ISC",
