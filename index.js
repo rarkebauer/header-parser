@@ -3,7 +3,7 @@ var locale = require('koa-locale');
 var app =  module.exports = new Koa();
 var os = require('os');
 
-console.log(os.cpus());
+//console.log(os.cpus());
 
 locale(app, {
   // the `lang-key` defaults to `lang`
@@ -31,8 +31,9 @@ app.use(ctx => {
 });
 
 
-var port = process.env.PORT || (process.argv[2] || 3000);
-port = (typeof port === "number") ? port : 3000;
+//var port = process.env.PORT || (process.argv[2] || 3000);
+//port = (typeof port === "number") ? port : 3000;
+var port = process.env.PORT || 3000;
 
 if(!module.parent){ app.listen(port); }
 
