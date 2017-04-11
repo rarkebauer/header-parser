@@ -1,6 +1,9 @@
 var Koa = require("koa");
 var locale = require('koa-locale');
 var app =  module.exports = new Koa();
+var os = require('os');
+
+console.log(os.cpus());
 
 locale(app, {
   // the `lang-key` defaults to `lang`
