@@ -10,7 +10,7 @@ locale(app, {
   lang: 'language'
 });
 
-app.use(async (ctx) => {
+app.use(ctx => {
 	try{
 		ctx.body = 'Hello Worl';
 		console.log(ctx)
