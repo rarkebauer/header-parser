@@ -19,6 +19,8 @@ app.use(ctx => {
 		console.log(langu);
 
 		var clientIp = ctx.request.ip;
+
+		ctx.body = clientIp;
 		console.log(clientIp);
 
 		var lang = ctx.language;
@@ -27,7 +29,6 @@ app.use(ctx => {
 
 
 		var head = ctx.request.header.host;
-		ctx.body = head;
 		console.log(head);
 		
 	} catch(err) {
