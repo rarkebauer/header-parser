@@ -23,6 +23,11 @@ app.use(ctx => {
 
 		var lang = ctx.language;
 		console.log(lang);
+
+
+
+		var head = ctx.request.header.host;
+		console.log(head);
 		
 	} catch(err) {
 		ctx.body = { message: err.message };
