@@ -13,23 +13,23 @@ locale(app, {
 app.use(ctx => {
 	try{
 		//ctx.body = 'Hello Worl';
-		console.log(ctx)
 
-		var langu = ctx.request.acceptsLanguages();
-		console.log(langu);
-
+		var lang = ctx.request.acceptsLanguages();
+		console.log(lang);
+		ctx.body = lang;
+		
 		var clientIp = ctx.request.ip;
-
 		ctx.body = clientIp;
 		console.log(clientIp);
+		
 
-		var lang = ctx.language;
-		console.log(lang);
+		var host = ctx.request.header; //host is an object
+		var agent = host['user-agent'];
+		ctx.body = agent 
+		console.log(host['user-agent']);
 
-
-
-		var head = ctx.request.header.host;
-		console.log(head);
+		ctx.body = clientIp + " " + lang + " " + agent;
+		
 		
 	} catch(err) {
 		ctx.body = { message: err.message };
