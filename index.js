@@ -12,7 +12,7 @@ locale(app, {
 
 app.use(ctx => {
 	try{
-		ctx.body = 'Hello Worl';
+		//ctx.body = 'Hello Worl';
 		console.log(ctx)
 
 		var langu = ctx.request.acceptsLanguages();
@@ -27,6 +27,7 @@ app.use(ctx => {
 
 
 		var head = ctx.request.header.host;
+		ctx.body = head;
 		console.log(head);
 		
 	} catch(err) {
