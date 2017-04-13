@@ -1,34 +1,33 @@
 var Koa = require("koa");
-var locale = require('koa-locale');
 var app =  module.exports = new Koa();
 var os = require('os');
-
-//console.log(os.cpus());
-
-locale(app, {
-  // the `lang-key` defaults to `lang`
-  lang: 'language'
-});
 
 app.use(ctx => {
 	try{
 		//ctx.body = 'Hello Worl';
 
-		var lang = ctx.request.acceptsLanguages();
+		var lang = ctx.request.acceptsLanguages(); //get language ['en-US', 'en']
 		console.log(lang);
+		langStr = lang[0]; //parse first response
+		console.log(langStr);
 		ctx.body = lang;
 		
 		var clientIp = ctx.request.ip;
+		if (clientIp.substr(0, 7) == "::ffff:") { //convert from ip6 to ip4 if it's in ip6
+	  		clientIp = clientIp.substr(7)
+			}
 		ctx.body = clientIp;
 		console.log(clientIp);
 		
-
 		var host = ctx.request.header; //host is an object
-		var agent = host['user-agent'];
+		var agent = host['user-agent']; //user user-agent key to get value of user agent
+		agent = agent.split(/[\(\)]/)[1]; //regular expression that splits the string where an opening or closing parenthesis is found and return second chunk [1] 
 		ctx.body = agent 
 		console.log(host['user-agent']);
 
-		ctx.body = clientIp + " " + lang + " " + agent;
+		ctx.body = { "ip address": clientIp, "software": agent, "language": langStr}
+		
+		//clientIp + " " + agent + " " + langStr;
 		
 		
 	} catch(err) {
@@ -37,9 +36,6 @@ app.use(ctx => {
 	} 
 });
 
-
-//var port = process.env.PORT || (process.argv[2] || 3000);
-//port = (typeof port === "number") ? port : 3000;
 var port = process.env.PORT || 3000;
 
 if(!module.parent){ app.listen(port); }
