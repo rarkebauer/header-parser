@@ -3,8 +3,6 @@ var app =  module.exports = new Koa();
 
 app.use(ctx => {
 	try{
-		var response = this;
-
 		var lang = ctx.request.acceptsLanguages(); //get language ['en-US', 'en']
 		langStr = lang[0]; //parse first response
 
@@ -17,9 +15,7 @@ app.use(ctx => {
 		var agent = host['user-agent']; //user user-agent key to get value of user agent
 		agent = agent.split(/[\(\)]/)[1]; //regular expression that splits the string where an opening or closing parenthesis is found and return second chunk [1] 
 		ctx.body = {"ip address": clientIp, "software": agent, "language": langStr}
-		response.body = ctx.body
-		//console.log(response.body);
-		//yield Object.create(response);
+
 	} catch(err) {
 		ctx.body = { message: err.message };
 		ctx.status = err.status || 500;
